@@ -106,7 +106,7 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
         print(bucket['bucket'] + " | Public Method: " + str(bucket['public']))
 
     print("----------------------------")
-    print("Buckets with Access Issues: " + str(len(access_issues)))
+    print("Buckets with Visibility Issues: " + str(len(access_issues)))
     print(*access_issues.keys(), sep=', ')
     
     print("----------------------------")
