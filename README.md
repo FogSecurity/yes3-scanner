@@ -27,6 +27,7 @@ YES3 Scanner checks for the following S3 configuration items:
 
 #### Additional Security
 - Bucket Encryption Settings
+- S3 Server Access Logging
 
 #### Ransomware Protection & Recovery
 - Object Lock Configuration
