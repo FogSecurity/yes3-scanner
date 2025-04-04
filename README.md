@@ -71,6 +71,7 @@ Buckets with Object Lock disabled: 5
 Buckets with Versioning disabled: 4
 Buckets with Lifecycle Config Set to Expiration: 1
 Buckets with Public Access from Website Setting: 0
+Buckets with Server Access Logs Disabled: 5
 ----------------------------
 Additional Bucket Details
 Buckets with default S3-Owned Encryption: sample-bucket-1, sample-bucket-2, sample-bucket-3, sample-bucket-4, sample-bucket-5, sample-bucket-6
@@ -89,7 +90,10 @@ Buckets with Versioning disabled: sample-bucket-1, sample-bucket-2, sample-bucke
 
 Buckets with Lifecycle Config Set to Expiration: sample-bucket-7
 
-Buckets with Public Access from Website Setting: 
+Buckets with Public Access from Website Setting:
+
+Buckets with Server Access Logs Disabled: sample-bucket-1, sample-bucket-2, sample-bucket-3, sample-bucket-4, sample-bucket-5
+
 
 ``` 
 
