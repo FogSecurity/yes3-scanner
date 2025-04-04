@@ -421,6 +421,21 @@ for bucket in s3_buckets['Buckets']:
             lifecycle = 'disabled'
         else:
             raise error
+
+    try:
+        bucket_logging = s3_client.get_bucket_logging(
+            Bucket=bucket_name
+        )
+        if bucket_logging.get('LoggingEnabled'):
+            access_logging = 'enabled'
+        else:
+            access_logging = 'disabled'
+
+        print(access_logging)
+
+    except botocore.exceptions.ClientError as error:
+        if error.response['Error']['Code'] == 'AccessDenied':
+            access_issue("AccessLogging", bucket_name)
     
     bucket_results.append({
         'Bucket': bucket_name,
@@ -433,7 +448,8 @@ for bucket in s3_buckets['Buckets']:
         'ObjectLock': object_lock,
         "Versioning": versioning,
         "LifecycleConfig": lifecycle,
-        "Website": website
+        "Website": website,
+        "AccessLogging": access_logging
     })
 
 summarize_results(bucket_results, account_results, bucket_results_summary)
