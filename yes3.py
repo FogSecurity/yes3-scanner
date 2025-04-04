@@ -119,6 +119,7 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
     print("Buckets with Versioning disabled: " + str(len(bucket_results_summary['Versioning'])))
     print("Buckets with Lifecycle Config Set to Expiration: " + str(len(bucket_results_summary['LifecycleConfig'])))
     print("Buckets with Public Access from Website Setting: " + str(len(bucket_results_summary['Website'])))
+    print("Buckets with Server Access Logs Disabled: " + str(len(bucket_results_summary['AccessLogging'])))
     
     print("----------------------------")
     print("Additional Bucket Details")
@@ -140,6 +141,8 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
     print(*bucket_results_summary['LifecycleConfig'], sep=', ')
     print("\n" + "Buckets with Public Access from Website Setting: ", end="")
     print(*bucket_results_summary['Website'], sep=', ')
+    print("\n" + "Buckets with Server Access Logs Disabled: ", end="")
+    print(*bucket_results_summary['AccessLogging'], sep=', ')
 
 
     #print("Recommendation: Use CMKs and non-transparent encryption if possible")
