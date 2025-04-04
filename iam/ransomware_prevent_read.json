@@ -32,7 +32,8 @@
                 "s3:GetEncryptionConfiguration",
                 "s3:GetBucketOwnershipControls",
                 "s3:GetBucketAcl",
-                "s3:GetLifecycleConfiguration"
+                "s3:GetLifecycleConfiguration",
+                "s3:GetBucketLogging"
             ],
             "Resource": "*"
         }
