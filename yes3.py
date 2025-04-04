@@ -208,7 +208,8 @@ bucket_results_summary = {
     'ObjectLock': [],
     "Versioning": [],
     "LifecycleConfig": [],
-    "Website": []
+    "Website": [],
+    "AccessLogging": []
     }
 
 access_issues = {}
@@ -430,8 +431,7 @@ for bucket in s3_buckets['Buckets']:
             access_logging = 'enabled'
         else:
             access_logging = 'disabled'
-
-        print(access_logging)
+            add_to_bucket_summary("AccessLogging", bucket_name)
 
     except botocore.exceptions.ClientError as error:
         if error.response['Error']['Code'] == 'AccessDenied':
