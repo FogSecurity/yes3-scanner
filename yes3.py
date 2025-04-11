@@ -237,7 +237,7 @@ for bucket in s3_buckets['Buckets']:
         encryption_setting = encryption['ServerSideEncryptionConfiguration']['Rules'][0]['ApplyServerSideEncryptionByDefault']
         encryption_algorithm = encryption_setting['SSEAlgorithm']
 
-        if encryption_algorithm != 'AES256':
+        if encryption_algorithm != 'AES256' and 'KMSMasterKeyID' in encryption_setting.keys():
             encryption_key = encryption_setting['KMSMasterKeyID']
         else:
             #Bucket uses S3 Managed (AWS Owned)
@@ -413,7 +413,7 @@ for bucket in s3_buckets['Buckets']:
         for rule in lifecycle_rules:
             lifecycle = "no_expiration"
 
-            if rule.get('Expiration').get("Days") or rule.get("NoncurrentVersionExpiration"):
+            if rule.get('Expiration') and rule.get('Expiration').get("Days") or rule.get("NoncurrentVersionExpiration"):
                 lifecycle = "expiration"
                 add_to_bucket_summary("LifecycleConfig", bucket_name)
                 break
