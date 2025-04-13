@@ -413,10 +413,11 @@ for bucket in s3_buckets['Buckets']:
         for rule in lifecycle_rules:
             lifecycle = "no_expiration"
 
-            if rule.get('Expiration').get("Days") or rule.get("NoncurrentVersionExpiration"):
-                lifecycle = "expiration"
-                add_to_bucket_summary("LifecycleConfig", bucket_name)
-                break
+            if 'Expiration' in rule.keys():
+                if rule.get('Expiration').get("Days") or rule.get("NoncurrentVersionExpiration"):
+                    lifecycle = "expiration"
+                    add_to_bucket_summary("LifecycleConfig", bucket_name)
+                    break
 
     except botocore.exceptions.ClientError as error:
         if error.response['Error']['Code'] == 'AccessDenied':
