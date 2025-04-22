@@ -3,8 +3,10 @@ import botocore
 import argparse
 
 def check_bucket_limit(session, region):
+    
     #Service Quota Code: L-DC2B2D3D
-    sq_client = session.client('service-quotas', region)
+    #Hardcoded region for us-east-1 to see Global Quota for S3 Buckets
+    sq_client = session.client('service-quotas', 'us-east-1')
 
     try:
         response = sq_client.get_service_quota(
@@ -413,7 +415,7 @@ for bucket in s3_buckets['Buckets']:
         for rule in lifecycle_rules:
             lifecycle = "no_expiration"
 
-            if rule.get('Expiration') and rule.get('Expiration').get("Days") or rule.get("NoncurrentVersionExpiration"):
+            if rule.get("Expiration") or rule.get("NoncurrentVersionExpiration"):
                 lifecycle = "expiration"
                 add_to_bucket_summary("LifecycleConfig", bucket_name)
                 break
