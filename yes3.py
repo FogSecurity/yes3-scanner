@@ -3,8 +3,10 @@ import botocore
 import argparse
 
 def check_bucket_limit(session, region):
+    
     #Service Quota Code: L-DC2B2D3D
-    sq_client = session.client('service-quotas', region)
+    #Hardcoded region for us-east-1 to see Global Quota for S3 Buckets
+    sq_client = session.client('service-quotas', 'us-east-1')
 
     try:
         response = sq_client.get_service_quota(
