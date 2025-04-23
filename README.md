@@ -37,10 +37,8 @@ YES3 Scanner checks for the following S3 configuration items:
 ## Running YES3 Scanner
 
 ```
-python3 yes3.py --profile <your_profile_here> --region <region_specifier>
+python3 yes3.py --profile <your_profile_here>
 ```
-
-Note: While S3 is global, YES3 will check Service Quotas for bucket limits and thus will need a region specified for the BOTO3 client.  It will check S3 globally (assuming proper permissions) as well as the account (global) limit for buckets.
 
 Example output:
 
