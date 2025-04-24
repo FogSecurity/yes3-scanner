@@ -164,6 +164,7 @@ def add_to_bucket_summary(category, bucket_name):
 
 parser = argparse.ArgumentParser(prog='YES3 Scanner') 
 parser.add_argument("--profile")
+parser.add_argument("--region")
 
 args = parser.parse_args()
 session = boto3.Session(profile_name = args.profile)
