@@ -2,7 +2,7 @@ import boto3
 import botocore
 import argparse
 
-def check_bucket_limit(session, region):
+def check_bucket_limit(session):
     
     #Service Quota Code: L-DC2B2D3D
     #Hardcoded region for us-east-1 to see Global Quota for S3 Buckets
@@ -54,7 +54,7 @@ def potential_public(bucket_results, account_results):
 
 def summarize_results(bucket_results, account_results, bucket_results_summary):
     #Process and print out results
-    sts_client = session.client('sts', region)
+    sts_client = session.client('sts', 'us-east-1')
     aws_account = sts_client.get_caller_identity()['Account']
 
     #Account Results
@@ -164,21 +164,19 @@ def add_to_bucket_summary(category, bucket_name):
 
 parser = argparse.ArgumentParser(prog='YES3 Scanner') 
 parser.add_argument("--profile")
-parser.add_argument("--region")
 
 args = parser.parse_args()
 session = boto3.Session(profile_name = args.profile)
-region = args.region
 
 s3_client = session.client('s3')
-s3_control_client = session.client('s3control', region_name=region)
+s3_control_client = session.client('s3control', 'us-east-1')
 # Account Configuration Checks
 # Account Public Access Block 
 
 sts_client = session.client('sts')
 account = sts_client.get_caller_identity()['Account']
 
-check_bucket_limit(session, region)
+check_bucket_limit(session)
 
 try:
     account_block_settings = s3_control_client.get_public_access_block(
