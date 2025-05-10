@@ -265,6 +265,14 @@ for bucket in s3_buckets['Buckets']:
         if error.response['Error']['Code'] == 'AccessDenied':
             access_issue("BucketBPA", bucket_name)
             bucket_bpa_config = "access_error"
+        elif error.response['Error']['Code'] == 'NoSuchPublicAccessBlockConfiguration':
+            bucket_bpa_config = {'BlockPublicAcls': False,
+                'IgnorePublicAcls': False,
+                'BlockPublicPolicy': False,
+                'RestrictPublicBuckets': False
+            }
+            
+            add_to_bucket_summary("BucketBPA", bucket_name)
         else:
             raise error
 
