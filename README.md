@@ -34,6 +34,20 @@ YES3 Scanner checks for the following S3 configuration items:
 - Bucket Versioning Settings
 - Bucket Lifecycle Configuration
 
+ ## Getting Started: Installing YES3 Scanner and Requirements
+
+- Python 3 and AWS's boto3 library are required.
+- AWS credentials and appropriate access are needed to run YES3.  For more information about IAM Requirements for this tool, see our [IAM documentation](iam/iam.md) which details how to install IAM for YES3 and required IAM permissions.
+
+Requirements can be installed via pip3 install and the requirements.txt file. A python virtual environment can be used if desired.
+
+```
+pip3 install -r requirements.txt
+```
+
+For information on configuring your AWS Credentials, see AWS's documentation [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
+
+
 ## Running YES3 Scanner
 
 ```
@@ -96,19 +110,6 @@ Buckets with Server Access Logs Disabled: sample-bucket-1, sample-bucket-2, samp
 
 
 ``` 
-
-## Installing YES3 Scanner and Requirements
-
-- Python 3 and AWS's boto3 library are required.
-- AWS credentials and appropriate access are needed to run YES3.  For more information about IAM Requirements for this tool, see our [IAM documentation](iam/iam.md) which details how to install IAM for YES3 and required IAM permissions.
-
-Requirements can be installed via pip3 install and the requirements.txt file. A python virtual environment can be used if desired.
-
-```
-pip3 install -r requirements.txt
-```
-
-For information on configuring your AWS Credentials, see AWS's documentation [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
 
 ## Contact
 
