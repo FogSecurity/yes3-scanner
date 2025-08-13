@@ -58,10 +58,12 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
     aws_account = sts_client.get_caller_identity()['Account']
 
     #Account Results
+    print("")
     print("YES3 SCANNER RESULTS")
     print("----------------------------")
-    print("AWS Account: " + aws_account)
-    print("Account Settings")
+    print("- AWS Account: " + aws_account)
+    print("")
+    print("- Account Settings:")
 
     if account_results['AccountBlockPublicAccess']['BlockPublicAcls'] and account_results['AccountBlockPublicAccess']['IgnorePublicAcls'] and account_results['AccountBlockPublicAccess']['BlockPublicPolicy'] and account_results['AccountBlockPublicAccess']['RestrictPublicBuckets']:
         print("Account Block Public Access Overall Status: " + "OK")
@@ -94,56 +96,55 @@ def summarize_results(bucket_results, account_results, bucket_results_summary):
         
     # Bucket Summary
     print("----------------------------")
-    print("Bucket Summary")
+    print("")
+    print("## Bucket Summary:")
 
     total_buckets = len(bucket_results)
 
-    print("Buckets Scanned: " + str(total_buckets))
-    print("----------------------------")
+    print("- Buckets Scanned: " + str(total_buckets))
 
     potentially_public = potential_public(bucket_results, account_results)
 
-    print("Buckets potentially public: " + str(len(potentially_public)))
+    print("- Buckets potentially public: " + str(len(potentially_public)))
     for bucket in potentially_public:
         print(bucket['bucket'] + " | Public Method: " + str(bucket['public']))
 
-    print("----------------------------")
-    print("Buckets with Visibility Issues: " + str(len(access_issues)))
+    print("- Buckets with Visibility Issues: " + str(len(access_issues)))
     print(*access_issues.keys(), sep=', ')
     
-    print("----------------------------")
-    print("Buckets with default S3-Owned Encryption: " + str(len(bucket_results_summary['BucketEncryption'])))
-    print("Buckets with a Block Public Access setting disabled: " + str(len(bucket_results_summary['BucketBPA'])))
-    print("Buckets with Bucket ACLs Enabled: " + str(len(bucket_results_summary['BucketACLEnabled'])))
-    print("Buckets with ACLs set to public: " + str(len(bucket_results_summary['BucketACL'])))
-    print("Buckets with Bucket Policy set to public: " + str(len(bucket_results_summary['BucketPolicyStatus'])))
-    print("Buckets with Object Lock disabled: " + str(len(bucket_results_summary['ObjectLock'])))
-    print("Buckets with Versioning disabled: " + str(len(bucket_results_summary['Versioning'])))
-    print("Buckets with Lifecycle Config Set to Expiration: " + str(len(bucket_results_summary['LifecycleConfig'])))
-    print("Buckets with Public Access from Website Setting: " + str(len(bucket_results_summary['Website'])))
-    print("Buckets with Server Access Logs Disabled: " + str(len(bucket_results_summary['AccessLogging'])))
+    print("- Buckets with default S3-Owned Encryption: " + str(len(bucket_results_summary['BucketEncryption'])))
+    print("- Buckets with a Block Public Access setting disabled: " + str(len(bucket_results_summary['BucketBPA'])))
+    print("- Buckets with Bucket ACLs Enabled: " + str(len(bucket_results_summary['BucketACLEnabled'])))
+    print("- Buckets with ACLs set to public: " + str(len(bucket_results_summary['BucketACL'])))
+    print("- Buckets with Bucket Policy set to public: " + str(len(bucket_results_summary['BucketPolicyStatus'])))
+    print("- Buckets with Object Lock disabled: " + str(len(bucket_results_summary['ObjectLock'])))
+    print("- Buckets with Versioning disabled: " + str(len(bucket_results_summary['Versioning'])))
+    print("- Buckets with Lifecycle Config Set to Expiration: " + str(len(bucket_results_summary['LifecycleConfig'])))
+    print("- Buckets with Public Access from Website Setting: " + str(len(bucket_results_summary['Website'])))
+    print("- Buckets with Server Access Logs Disabled: " + str(len(bucket_results_summary['AccessLogging'])))
     
     print("----------------------------")
-    print("Additional Bucket Details")
-    print("Buckets with default S3-Owned Encryption: ", end="")
+    print("")
+    print("## Additional Bucket Details:")
+    print("- Buckets with default S3-Owned Encryption: ", end="")
     print(*bucket_results_summary['BucketEncryption'], sep=', ')
-    print("\n" + "Buckets with a Block Public Access setting disabled: ", end="")
+    print("\n" + "- Buckets with a Block Public Access setting disabled: ", end="")
     print(*bucket_results_summary['BucketBPA'], sep=', ')
-    print("\n" + "Buckets with Bucket ACLs Enabled: ", end="")
+    print("\n" + "- Buckets with Bucket ACLs Enabled: ", end="")
     print(*bucket_results_summary['BucketACLEnabled'], sep=', ')
-    print("\n" + "Buckets with ACLs set to public: ", end="")
+    print("\n" + "- Buckets with ACLs set to public: ", end="")
     print(*bucket_results_summary['BucketACL'], sep=', ')
-    print("\n" + "Buckets with Bucket Policy set to public: ", end="")
+    print("\n" + "- Buckets with Bucket Policy set to public: ", end="")
     print(*bucket_results_summary['BucketPolicyStatus'], sep=', ')
-    print("\n" + "Buckets with Object Lock disabled: ", end="")
+    print("\n" + "- Buckets with Object Lock disabled: ", end="")
     print(*bucket_results_summary['ObjectLock'], sep=', ')
-    print("\n" + "Buckets with Versioning disabled: ", end="")
+    print("\n" + "- Buckets with Versioning disabled: ", end="")
     print(*bucket_results_summary['Versioning'], sep=', ')
-    print("\n" + "Buckets with Lifecycle Config Set to Expiration: ", end="")
+    print("\n" + "- Buckets with Lifecycle Config Set to Expiration: ", end="")
     print(*bucket_results_summary['LifecycleConfig'], sep=', ')
-    print("\n" + "Buckets with Public Access from Website Setting: ", end="")
+    print("\n" + "- Buckets with Public Access from Website Setting: ", end="")
     print(*bucket_results_summary['Website'], sep=', ')
-    print("\n" + "Buckets with Server Access Logs Disabled: ", end="")
+    print("\n" + "- Buckets with Server Access Logs Disabled: ", end="")
     print(*bucket_results_summary['AccessLogging'], sep=', ')
 
 
@@ -482,4 +483,3 @@ summarize_results(bucket_results, account_results, bucket_results_summary)
 
 
 #Output Bucket Results
-
